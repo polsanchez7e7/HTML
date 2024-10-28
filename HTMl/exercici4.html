@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Replicación de Imagen</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .no-border {
+            border: none;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            border: 1px solid black;
+        }
+        .grid-item {
+            padding: 20px;
+            text-align: center;
+            border: 1px solid black;
+        }
+        .check {
+            font-size: 36px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Primera tabla -->
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Telephone</th>
+    </tr>
+    <tr>
+        <td>Bill Gates</td>
+        <td>555 77 854</td>
+    </tr>
+    <tr>
+        <td class="no-border"></td>
+        <td>555 77 855</td>
+    </tr>
+</table>
+
+<!-- Segunda tabla -->
+<table>
+    <tr>
+        <td><strong>First Name:</strong></td>
+        <td>Bill Gates</td>
+    </tr>
+    <tr>
+        <td><strong>Telephone:</strong></td>
+        <td>555 77 854</td>
+    </tr>
+    <tr>
+        <td class="no-border"></td>
+        <td>555 77 855</td>
+    </tr>
+</table>
+
+<!-- Grid layout -->
+<div class="grid-container">
+    <div class="grid-item">
+        <strong>First</strong><br>Row
+    </div>
+    <div class="grid-item">
+        Row
+    </div>
+    <div class="grid-item check">
+        ✔
+    </div>
+    <div class="grid-item">
+        <strong>Second</strong><br>Row
+    </div>
+    <div class="grid-item">
+        Row
+    </div>
+    <div class="grid-item check">
+        ✔
+    </div>
+</div>
+
+</body>
+</html>

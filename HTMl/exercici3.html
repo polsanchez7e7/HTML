@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Example</title>
+    <style>
+        body {background-color: green;}  
+    </style>
+</head>
+<body>
+    <h2>A nested List:</h2>
+    <ul>
+        <li>Coffee</li>
+        <li>Tea
+            <ul>
+                <li>Black tea</li>
+                <li>Green tea
+                    <ul>
+                        <li>China</li>
+                        <li>Africa</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Milk</li>
+    </ul>
+    
+    <ul>
+        <li>Coffee - black hot drink</li>
+        <li>Milk - white cold drink</li>
+    </ul>
+
+    <h2>Numbered list:</h2>
+    <ol>
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+    </ol>
+
+    <h2>Letters list:</h2>
+    <ol type="A">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+    </ol>
+
+    <h2>Lowercase letters list:</h2>
+    <ol type="a">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+    </ol>
+
+    <h2>Roman numbers list:</h2>
+    <ol type="I">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+    </ol>
+
+    <h2>Lowercase Roman numbers list:</h2>
+    <ol type="i">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+    </ol>
+
+    <p>Link per enviar emails a una adreça determinada: <a href="mailto:admin@email.com">admin@email.com</a></p>
+
+    <h1>CREATE TABLE examples</h1>
+    <ul>
+        <li><a href="#">Basic CREATE TABLE statement</a></li>
+        <li><a href="#">Creating a table with a particular storage engine</a></li>
+        <li><a href="#">Creating a table with auto increment</a></li>
+        <li><a href="#">Creating a table with the current timestamp</a></li>
+        <li><a href="#">Creating a table with TIMESTAMP DEFAULT NOW()</a></li>
+        <li><a href="#">Viewing a table definition</a></li>
+    </ul>
+
+    <h2>Basic CREATE TABLE statement</h2>
+    <p>A very basic <code>CREATE TABLE</code> statement which should work in any SQL database:</p>
+    <pre><code>mysql> CREATE TABLE example (
+    id INT,
+    data VARCHAR(100)
+    );
+Query OK, 0 rows affected (0.03 sec)</code></pre>
+
+    <h2>Creating a table with a particular storage engine</h2>
+    <p>MySQL provides a variety of different table types with different levels of functionality. The usual default, and most widely used, is <code>InnoDB</code>. Other storage types must be explicitly defined.</p>
+    <pre><code>mysql> CREATE TABLE example_innodb (
+    id INT,
+    data VARCHAR(100)
+    ) ENGINE=InnoDB;
+Query OK, 0 rows affected (0.03 sec)</code></pre>
+    <p>Note that beginning with MySQL 4.1, <code>InnoDB</code> is the preferred method of defining the storage type.</p>
+
+    <h2>Creating a table with auto_increment</h2>
+    <p>Often you'll want to be able to automatically assign a sequential value to a column.</p>
+    <pre><code>mysql> CREATE TABLE example_autoincrement (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    data VARCHAR(100)
+    );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO example_autoincrement (data)
+    -> VALUES ('Hello world');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM example_autoincrement;
++----+-------------+
+| id | data        |
++----+-------------+
+|  1 | Hello world |
++----+-------------+
+1 row in set (0.01 sec)</code></pre>
+
+    <h2>Creating a table with the current timestamp</h2>
+    <p>Often it's useful to have an automatic timestamp on each record. The MySQL special datatype <code>TIMESTAMP</code> enables you to keep track of changes to a record.</p>
+    <pre><code>mysql> CREATE TABLE example_timestamp (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    data VARCHAR(100),
+    cur_timestamp TIMESTAMP(6)
+    );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO example_timestamp (data)
+    -> VALUES ('The time of creation is:');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM example_timestamp;
++----+--------------------------+----------------------------+
+| id | data                     | cur_timestamp               |
++----+--------------------------+----------------------------+
+|  1 | The time of creation is:  | 2004-12-01 23:17:32.123456 |
++----+--------------------------+----------------------------+
+1 row in set (0.01 sec)</code></pre>
+
+    <p>The column <code>cur_timestamp</code> is automatically updated every time the record is changed.</p>
+
+    <h2>Creating a table with TIMESTAMP DEFAULT NOW()</h2>
+    <p>MySQL supports the construct <code>TIMESTAMP DEFAULT NOW()</code> only from version 4.1:</p>
+    <pre><code>CREATE TABLE example_default_now (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    data VARCHAR(100),
+    created TIMESTAMP DEFAULT NOW()
+    );</code></pre>
+    <p>In this case the column created retains its initial value and is not changed during subsequent updates.</p>
+
+    <h2>Viewing a table definition</h2>
+    <p>For basic information on table columns, use <code>DESC tablename</code>.</p>
+    <pre><code>mysql> DESC example;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int(11)      | NO   | PRI | NULL    | auto_increment |
+| data  | varchar(100) | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)</code></pre>
+
+    <p>Exact definition of the table:</p>
+    <pre><code>mysql> SHOW CREATE TABLE example\G
+*************************** 1. row ***************************
+       Table: example
+Create Table: CREATE TABLE `example` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</code></pre>
+</body>
+</html>
