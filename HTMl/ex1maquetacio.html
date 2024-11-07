@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layout Example</title>
+<style>
+  body {
+    display: grid;
+    grid-template-areas:
+      "header header"
+      "main aside"
+      "footer footer";
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 2fr 1fr;
+    gap: 5px;
+    height: 100vh;
+    margin: 0;
+  }
+
+  header {
+    grid-area: header;
+    background-color: #1E90FF;
+    padding: 20px;
+    font-size: 2em;
+  }
+
+  main {
+    grid-area: main;
+    background-color: #00FFFF;
+    padding: 20px;
+    font-size: 2em;
+  }
+
+  aside {
+    grid-area: aside;
+    background-color: #90EE90;
+    padding: 70px;
+    font-size: 2em;
+  }
+
+  footer {
+    grid-area: footer;
+    background-color: #FFE4B5;
+    padding: 20px;
+    font-size: 2em;
+  }
+</style>
+</head>
+<body>
+
+<header>Header</header>
+<main>Main</main>
+<aside>Aside</aside>
+<footer>Footer</footer>
+
+</body>
+</html>
